@@ -1,0 +1,7 @@
+D:\Program Files\Файло-помойка\Вузовская шняга\.Net Framework\Snake_Game\Interface_for_Snake\bin\Debug\Interface_for_Snake.dll
+D:\Program Files\Файло-помойка\Вузовская шняга\.Net Framework\Snake_Game\Interface_for_Snake\bin\Debug\Interface_for_Snake.pdb
+D:\Program Files\Файло-помойка\Вузовская шняга\.Net Framework\Snake_Game\Interface_for_Snake\obj\Debug\Interface_for_Snake.Properties.Resources.resources
+D:\Program Files\Файло-помойка\Вузовская шняга\.Net Framework\Snake_Game\Interface_for_Snake\obj\Debug\Interface_for_Snake.csproj.GenerateResource.cache
+D:\Program Files\Файло-помойка\Вузовская шняга\.Net Framework\Snake_Game\Interface_for_Snake\obj\Debug\Interface_for_Snake.csproj.CoreCompileInputs.cache
+D:\Program Files\Файло-помойка\Вузовская шняга\.Net Framework\Snake_Game\Interface_for_Snake\obj\Debug\Interface_for_Snake.dll
+D:\Program Files\Файло-помойка\Вузовская шняга\.Net Framework\Snake_Game\Interface_for_Snake\obj\Debug\Interface_for_Snake.pdb

@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<ArrayOfSnakeHighscore xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <SnakeHighscore>
+    <PlayerName>Сава</PlayerName>
+    <Score>28</Score>
+  </SnakeHighscore>
+  <SnakeHighscore>
+    <PlayerName>Тест</PlayerName>
+    <Score>21</Score>
+  </SnakeHighscore>
+  <SnakeHighscore>
+    <PlayerName>Плотва</PlayerName>
+    <Score>25</Score>
+  </SnakeHighscore>
+  <SnakeHighscore>
+    <PlayerName>Савелий</PlayerName>
+    <Score>24</Score>
+  </SnakeHighscore>
+  <SnakeHighscore>
+    <PlayerName>Мама Ира</PlayerName>
+    <Score>24</Score>
+  </SnakeHighscore>
+</ArrayOfSnakeHighscore>

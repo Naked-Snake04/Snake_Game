@@ -1,0 +1,99 @@
+﻿<Window x:Class="Snake_Game.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:MyNamespace="clr-namespace:Interface_for_Snake;assembly=Interface_for_Snake"
+        xmlns:local="clr-namespace:Snake_Game"
+        mc:Ignorable="d"
+        x:Name="window" 
+        xmlns:scm="clr-namespace:System.ComponentModel;assembly=WindowsBase"
+        Title="Snake - Score: 0" SizeToContent="WidthAndHeight" 
+        ContentRendered="Window_ContentRendered" KeyUp="Window_KeyUp"
+        ResizeMode="NoResize" WindowStyle="None" Background="Black" MouseDown="Window_MouseDown">
+
+    <Window.Resources>
+        <CollectionViewSource Source="{Binding ElementName=window, Path=HighscoreList}" x:Key="HighScoreListViewSource"> 
+            <CollectionViewSource.SortDescriptions>
+                <scm:SortDescription Direction="Descending" PropertyName="Score" />
+            </CollectionViewSource.SortDescriptions>
+        </CollectionViewSource>
+    </Window.Resources>
+
+    <DockPanel Background="Black">
+        <Grid DockPanel.Dock="Top" Name="pnlTitleBar">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid.Resources>
+                <Style TargetType="TextBlock">
+                <Setter Property="FontFamily" Value="Consolas"/>
+                <Setter Property="Foreground" Value="White"/>
+                <Setter Property="FontSize" Value="24"/>
+                <Setter Property="FontWeight" Value="Bold"/>
+                </Style>
+            </Grid.Resources>
+
+            <WrapPanel Margin="10,0,0,0">
+                <TextBlock>Score:</TextBlock>
+                <TextBlock Name="tbStatusScore">0</TextBlock>
+            </WrapPanel>
+             <WrapPanel Grid.Column="1">
+                <TextBlock>Speed:</TextBlock>
+                 <TextBlock Name="tbStatusSpeed">0</TextBlock>
+             </WrapPanel>
+             <Button Grid.Column="2" DockPanel.Dock ="Right" Background="Transparent" Foreground="White" FontWeight="Bold" FontSize="20" BorderThickness="0" Name="btnClose" Click="btnClose_Click" Padding="10,0">X</Button>
+        </Grid>
+        <Border BorderBrush="Black" BorderThickness="5">
+            <Canvas Name="GameArena" ClipToBounds="True" Width="400" Height="400">
+                <Border BorderBrush="Silver" BorderThickness="2" Width="300" Height="300" Canvas.Left="50" Canvas.Top="50" Name="bdrWelcomeMessage" Panel.ZIndex="1">
+                    <StackPanel Orientation="Vertical" Background="AliceBlue">
+                        <TextBlock FontWeight="Bold" FontSize="50" HorizontalAlignment="Center" Margin="0,20,0,0">Snake Game</TextBlock>
+                        <TextBlock TextWrapping="Wrap" Margin="20" FontSize="16">Используйте ↑↓→← для управления змейкой. Ешьте красные яблоки, но не врежьтесь в стену или в змейку!</TextBlock>
+                        <TextBlock FontWeight="Bold" HorizontalAlignment="Center" FontSize="24" Foreground="Maroon">Начать: жми ПРОБЕЛ</TextBlock>
+                        <Button Margin="20" Name ="btnShowHighScoreList" Click="btnShowHighScoreList_Click" HorizontalAlignment="Center" Padding="10,3">Показать список рекордов...</Button>
+                    </StackPanel>
+                </Border>
+                <Border BorderBrush="Silver" BorderThickness="2" Width="300" Height="300" Canvas.Left="50" Canvas.Top="50" Name="bdrHighscoreList" Panel.ZIndex="1" Visibility="Collapsed">
+                    <StackPanel Orientation="Vertical" Background="AliceBlue">
+                        <Border BorderThickness="0,0,0,2" BorderBrush="Silver" Margin="0,10">
+                            <TextBlock HorizontalAlignment="Center" FontSize="34" FontWeight="Bold">Список рекордов</TextBlock>
+                        </Border>
+                        <ItemsControl ItemsSource="{Binding Source={StaticResource HighScoreListViewSource}}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <DockPanel Margin="7">
+                                        <TextBlock Text="{Binding PlayerName}" DockPanel.Dock="Left" FontSize="22"></TextBlock>
+                                        <TextBlock Text="{Binding Score}" DockPanel.Dock="Right" FontSize="22" HorizontalAlignment="Right"></TextBlock>
+                                    </DockPanel>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </StackPanel>
+                </Border>
+
+                <Border BorderBrush="Silver" BorderThickness="2" Width="300" Height="300" Canvas.Left="50" Canvas.Top="50" Name="bdrNewHighscore" Panel.ZIndex="1" Visibility="Collapsed">
+                    <StackPanel Orientation="Vertical" Background="AliceBlue">
+                        <TextBlock HorizontalAlignment="Center" FontSize="34" FontWeight="Bold" Margin="20">Новый рекорд!</TextBlock>
+                        <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" FontSize="16">  
+        Поздравляем - вы попали в список рекордов! Пожалуйста, введите своё имя ниже...
+                        </TextBlock>
+                        <TextBox Name="txtPlayerName" FontSize="28" FontWeight="Bold" MaxLength="8" Margin="20" HorizontalContentAlignment="Center"></TextBox>
+                        <Button Name="btnAddToHighscoreList" FontSize="16" HorizontalAlignment="Center" Click="BtnAddToHighscoreList_Click" Padding="10,5">Add to highscore list</Button>
+                    </StackPanel>
+                </Border>
+                <Border BorderBrush="Silver" BorderThickness="2" Width="300" Height="300" Canvas.Left="50" Canvas.Top="50" Name="bdrEndOfGame" Panel.ZIndex="1" Visibility="Collapsed">
+                    <StackPanel Orientation="Vertical" Background="AliceBlue">
+                        <TextBlock HorizontalAlignment="Center" FontSize="40" FontWeight="Bold" Margin="0,20,0,0">Вы проиграли!</TextBlock>
+                        <TextBlock Margin="20" TextAlignment="Center" FontSize="16">Ваш счёт:</TextBlock>
+                        <TextBlock Name="tbFinalScore" TextAlignment="Center" FontSize="48" FontWeight="Bold" Foreground="Maroon">0</TextBlock>
+                        <TextBlock TextAlignment="Center" FontSize="16" Margin="20">Нажмите ПРОБЕЛ для рестарта!</TextBlock>
+                    </StackPanel>
+                </Border>
+            </Canvas>
+        </Border>
+    </DockPanel>
+</Window>
